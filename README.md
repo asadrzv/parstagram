@@ -23,7 +23,8 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='part1_demo.gif' title='Part 1 Video Walkthrough' width='' alt='Part 1 Video Walkthrough' /><br>
+<img src='part1_demo.gif' title='Part 1.1 Video Walkthrough' width='' alt='Part 1.1 Video Walkthrough' />
+<img src='part1_demo_2.gif' title='Part 1.2 Video Walkthrough' width='' alt='Part 1.2 Video Walkthrough' /><br>
 
 ## License
 
