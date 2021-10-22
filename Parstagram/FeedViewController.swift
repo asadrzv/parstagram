@@ -70,6 +70,44 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let post = posts[indexPath.row]
+        
+        // Commment with text that keeps track of its post and author
+        let comment = PFObject(className: "Comments")
+        comment["text"] = "This is a random comment!"
+        comment["post"] = post
+        comment["author"] = PFUser.current()!
+        
+        // Add comment to post
+        post.addUniqueObject(comment, forKey: "comments")
+        
+        // Save comment
+        post.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved!")
+            } else {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    // Logout user and switch back to login screen
+    @IBAction func onLogout(_ sender: Any) {
+        // Logout user
+        PFUser.logOut()
+        
+        // Switch back to login screen
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(identifier: "LoginViewController")
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let
+                delegate = windowScene.delegate as? SceneDelegate else { return }
+        
+        delegate.window?.rootViewController = loginViewController
+    }
+    
 
     /*
     // MARK: - Navigation
